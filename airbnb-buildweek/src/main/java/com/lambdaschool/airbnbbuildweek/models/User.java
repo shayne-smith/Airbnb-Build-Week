@@ -88,13 +88,13 @@ public class User
      * Part of the join relationship between user and role
      * connects users to the user role combination
      */
-//    @ApiModelProperty(name = "roles",
-//        value = "List of user roles for this users")
-//    @OneToMany(mappedBy = "user",
-//        cascade = CascadeType.ALL)
-//    @JsonIgnoreProperties(value = "user",
-//        allowSetters = true)
-//    private List<UserRoles> roles = new ArrayList<>();
+    @ApiModelProperty(name = "roles",
+        value = "List of user roles for this users")
+    @OneToMany(mappedBy = "user",
+        cascade = CascadeType.ALL)
+    @JsonIgnoreProperties(value = "user",
+        allowSetters = true)
+    private List<UserRoles> roles = new ArrayList<>();
 
     /**
      * Default constructor used primarily by the JPA.
@@ -235,20 +235,20 @@ public class User
      *
      * @return the list of useremails (List(Useremail)) for this user
      */
-    public List<Useremail> getUseremails()
-    {
-        return useremails;
-    }
+//    public List<Useremail> getUseremails()
+//    {
+//        return useremails;
+//    }
 
     /**
      * Setter for list of useremails for this user
      *
      * @param useremails the new list of useremails (List(Useremail)) for this user
      */
-    public void setUseremails(List<Useremail> useremails)
-    {
-        this.useremails = useremails;
-    }
+//    public void setUseremails(List<Useremail> useremails)
+//    {
+//        this.useremails = useremails;
+//    }
 
     /**
      * Getter for user role combinations
