@@ -75,23 +75,24 @@ public class User
     @Email
     private String primaryemail;
 
-//    @ApiModelProperty(name = "user emails",
-//        value = "List of user emails for this users")
-//    @OneToMany(mappedBy = "user",
-//        cascade = CascadeType.ALL,
-//        orphanRemoval = true)
-//    @JsonIgnoreProperties(value = "user",
-//        allowSetters = true)
-//    private List<Useremail> useremails = new ArrayList<>();
+    @ApiModelProperty(name = "user property listings",
+        value = "The property listings for this user")
+    @OneToMany(mappedBy = "user",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JsonIgnoreProperties(value = "user",
+        allowSetters = true)
+    private List<Listing> listings = new ArrayList<>();
 
     /**
      * Part of the join relationship between user and role
      * connects users to the user role combination
      */
     @ApiModelProperty(name = "roles",
-        value = "List of user roles for this users")
+        value = "List of user roles for this user")
     @OneToMany(mappedBy = "user",
-        cascade = CascadeType.ALL)
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
     @JsonIgnoreProperties(value = "user",
         allowSetters = true)
     private List<UserRoles> roles = new ArrayList<>();
@@ -165,6 +166,16 @@ public class User
         }
     }
 
+    public List<Listing> getListings()
+    {
+        return listings;
+    }
+
+    public void setListings(List<Listing> listings)
+    {
+        this.listings = listings;
+    }
+
     /**
      * setter for username
      *
@@ -229,26 +240,6 @@ public class User
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         this.password = passwordEncoder.encode(password);
     }
-
-    /**
-     * Getter for the list of useremails for this user
-     *
-     * @return the list of useremails (List(Useremail)) for this user
-     */
-//    public List<Useremail> getUseremails()
-//    {
-//        return useremails;
-//    }
-
-    /**
-     * Setter for list of useremails for this user
-     *
-     * @param useremails the new list of useremails (List(Useremail)) for this user
-     */
-//    public void setUseremails(List<Useremail> useremails)
-//    {
-//        this.useremails = useremails;
-//    }
 
     /**
      * Getter for user role combinations
