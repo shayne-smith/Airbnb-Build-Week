@@ -7,9 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface UserRepository extends CrudRepository<User, Long>
 {
     User findByUsername(String username);
+
+    List<User> findByUsernameContainingIgnoreCase(String name);
 
     @Query(value = "SELECT COUNT(*) as count FROM userroles WHERE userid = :userid AND roleid = :roleid",
         nativeQuery = true)

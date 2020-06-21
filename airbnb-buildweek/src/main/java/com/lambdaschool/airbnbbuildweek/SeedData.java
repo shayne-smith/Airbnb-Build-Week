@@ -42,7 +42,7 @@ public class SeedData implements CommandLineRunner
             r2));
         admins.add(new UserRoles(new User(),
             r3));
-        User u1 = new User("lana kane",
+        User u1 = new User("lanakane",
             "password",
             "lana.kane@figgisagency.local",
             admins);
@@ -78,7 +78,7 @@ public class SeedData implements CommandLineRunner
             r3));
         datas.add(new UserRoles(new User(),
             r2));
-        User u2 = new User("sterling archer",
+        User u2 = new User("sterlingarcher",
             "1234567",
             "sterling.archer@figgisagency.com",
             datas);
@@ -101,7 +101,7 @@ public class SeedData implements CommandLineRunner
         ArrayList<UserRoles> users = new ArrayList<>();
         users.add(new UserRoles(new User(),
             r2));
-        User u3 = new User("cyril figgis",
+        User u3 = new User("cyrilfiggis",
             "password",
             "cyril.figgis@figgisagency.com",
             users);

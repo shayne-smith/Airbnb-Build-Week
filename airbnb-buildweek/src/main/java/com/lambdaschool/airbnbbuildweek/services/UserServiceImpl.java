@@ -2,6 +2,7 @@ package com.lambdaschool.airbnbbuildweek.services;
 
 import com.lambdaschool.airbnbbuildweek.exceptions.ResourceFoundException;
 import com.lambdaschool.airbnbbuildweek.exceptions.ResourceNotFoundException;
+import com.lambdaschool.airbnbbuildweek.handlers.HelperFunctions;
 import com.lambdaschool.airbnbbuildweek.models.Listing;
 import com.lambdaschool.airbnbbuildweek.models.Role;
 import com.lambdaschool.airbnbbuildweek.models.User;
@@ -27,6 +28,9 @@ public class UserServiceImpl
 
     @Autowired
     private UserAuditing userAuditing;
+
+    @Autowired
+    private HelperFunctions helper;
 
     public List<User> findAll()
     {
@@ -55,6 +59,12 @@ public class UserServiceImpl
             throw new ResourceNotFoundException("User name " + name + " not found!");
         }
         return uu;
+    }
+
+    @Override
+    public List<User> findByNameContaining(String username)
+    {
+        return userrepos.findByUsernameContainingIgnoreCase(username.toLowerCase());
     }
 
     @Transactional
@@ -107,16 +117,6 @@ public class UserServiceImpl
             }
         }
 
-        //        @NotNull String listingname,
-        //        @NotNull String roomtype,
-        //        @NotNull String location,
-        //        int minnumnights,
-        //        int maxnumguests,
-        //        boolean petsallowed,
-        //        int numrooms,
-        //        int numbeds,
-        //        @NotNull User user)
-
         newUser.getListings()
             .clear();
         for (Listing l : user.getListings())
@@ -134,6 +134,94 @@ public class UserServiceImpl
         }
 
         return userrepos.save(newUser);
+    }
+
+    @Transactional
+    @Override
+    public User update(
+        User user,
+        long id)
+    {
+        User currentUser = findUserById(id);
+
+        if (helper.isAuthorizedToMakeChange(currentUser.getUsername()))
+        {
+            if (user.getUsername() != null)
+            {
+                currentUser.setUsername(user.getUsername()
+                    .toLowerCase());
+            }
+
+            if (user.getPassword() != null)
+            {
+                currentUser.setPasswordNoEncrypt(user.getPassword());
+            }
+
+            if (user.getPrimaryemail() != null)
+            {
+                currentUser.setPrimaryemail(user.getPrimaryemail()
+                    .toLowerCase());
+            }
+
+            if (user.getRoles()
+                .size() > 0)
+            {
+                // delete the roles for the old user we are replacing
+                for (UserRoles ur : currentUser.getRoles())
+                {
+                    deleteUserRole(ur.getUser()
+                            .getUserid(),
+                        ur.getRole()
+                            .getRoleid());
+                }
+
+                // add the new roles for the user we are replacing
+                for (UserRoles ur : user.getRoles())
+                {
+                    addUserRole(currentUser.getUserid(),
+                        ur.getRole()
+                            .getRoleid());
+                }
+            }
+
+            if (user.getListings()
+                .size() > 0)
+            {
+                currentUser.getListings()
+                    .clear();
+                for (Listing l : user.getListings())
+                {
+                    currentUser.getListings()
+                        .add(new Listing(l.getListingname(),
+                            l.getRoomtype(),
+                            l.getLocation(),
+                            l.getMinnumnights(),
+                            l.getMaxnumguests(),
+                            l.isPetsallowed(),
+                            l.getNumrooms(),
+                            l.getNumbeds(),
+                            currentUser));
+                }
+            }
+
+            return userrepos.save(currentUser);
+        } else
+        {
+            {
+                // note we should never get to this line but is needed for the compiler
+                // to recognize that this exception can be thrown
+                throw new ResourceNotFoundException("This user is not authorized to make change");
+            }
+        }
+    }
+
+    @Transactional
+    @Override
+    public void delete(long id)
+    {
+        userrepos.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("User id " + id + " not found!"));
+        userrepos.deleteById(id);
     }
 
     @Transactional
