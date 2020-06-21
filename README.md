@@ -9,7 +9,7 @@ BASE URL: https://post-here-heroku.herokuapp.com
 
 USER ENDPOINTS:  
 I. GET /users/users  
-II. GET /users/user/{userid} 
+II. GET /users/user/{userid}
 III. GET /users/user/name/{username}
 IV. GET /users/user/name/like/{substring}
 V. POST /users/user
