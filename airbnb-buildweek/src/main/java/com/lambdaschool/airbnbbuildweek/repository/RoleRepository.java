@@ -1,5 +1,9 @@
 package com.lambdaschool.airbnbbuildweek.repository;
 
-public interface RoleRepository
+import com.lambdaschool.airbnbbuildweek.models.Role;
+import org.springframework.data.repository.CrudRepository;
+
+public interface RoleRepository extends CrudRepository<Role, Long>
 {
+    Role findByNameIgnoreCase(String name);
 }

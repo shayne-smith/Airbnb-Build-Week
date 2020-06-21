@@ -3,7 +3,6 @@ package com.lambdaschool.airbnbbuildweek.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -27,9 +26,13 @@ public class Listing extends Auditable
     private String location;
 
     private int minnumnights;
+
     private int maxnumguests;
+
     private boolean petsallowed = false;
+
     private int numrooms;
+
     private int numbeds;
 
     @ManyToOne
