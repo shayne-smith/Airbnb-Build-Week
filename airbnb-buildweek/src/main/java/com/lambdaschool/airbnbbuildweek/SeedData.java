@@ -42,20 +42,10 @@ public class SeedData implements CommandLineRunner
             r2));
         admins.add(new UserRoles(new User(),
             r3));
-        User u1 = new User("admin",
+        User u1 = new User("lana kane",
             "password",
             "lana.kane@figgisagency.local",
             admins);
-
-        //                @NotNull String listingname,
-        //        @NotNull String roomtype,
-        //        @NotNull String location,
-        //        int minnumnights,
-        //        int maxnumguests,
-        //        boolean petsallowed,
-        //        int numrooms,
-        //        int numbeds,
-        //        @NotNull User user)
 
         u1.getListings()
             .add(new Listing(
@@ -88,14 +78,14 @@ public class SeedData implements CommandLineRunner
             r3));
         datas.add(new UserRoles(new User(),
             r2));
-        User u2 = new User("Sterling Archer",
+        User u2 = new User("sterling archer",
             "1234567",
             "sterling.archer@figgisagency.com",
             datas);
 
         u2.getListings()
             .add(new Listing(
-                "Sterling's Archer Penthouse",
+                "Sterling Archer's Penthouse",
                 "entire place",
                 "New York",
                 3,
@@ -103,8 +93,60 @@ public class SeedData implements CommandLineRunner
                 true,
                 4,
                 5,
-                u1));
+                u2));
 
         userService.save(u2);
+
+        // user
+        ArrayList<UserRoles> users = new ArrayList<>();
+        users.add(new UserRoles(new User(),
+            r2));
+        User u3 = new User("cyril figgis",
+            "password",
+            "cyril.figgis@figgisagency.com",
+            users);
+
+        u3.getListings()
+            .add(new Listing(
+                "Cyril Figgis' Apartment",
+                "shared room",
+                "New York",
+                1,
+                3,
+                true,
+                2,
+                2,
+                u3));
+        userService.save(u3);
+
+        User u4 = new User("admin",
+            "password",
+            "admin@figgisagency.local",
+            admins);
+
+        u4.getListings()
+            .add(new Listing(
+                "Admin's House",
+                "entire place",
+                "Nashville",
+                2,
+                12,
+                true,
+                6,
+                6,
+                u4));
+        u4.getListings()
+            .add(new Listing(
+                "Admin's Lakehouse",
+                "entire place",
+                "Lake Cumberland",
+                2,
+                9,
+                true,
+                4,
+                5,
+                u4));
+
+        userService.save(u4);
     }
 }
