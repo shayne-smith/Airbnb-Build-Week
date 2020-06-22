@@ -57,6 +57,8 @@ public class SeedData implements CommandLineRunner
                 false,
                 2,
                 3,
+                1231.00,
+                736,
                 u1));
         u1.getListings()
             .add(new Listing(
@@ -68,6 +70,8 @@ public class SeedData implements CommandLineRunner
                 false,
                 2,
                 3,
+                999.00,
+                1233,
                 u1));
 
         userService.save(u1);
@@ -93,6 +97,8 @@ public class SeedData implements CommandLineRunner
                 true,
                 4,
                 5,
+                1200.00,
+                2430,
                 u2));
 
         userService.save(u2);
@@ -116,6 +122,8 @@ public class SeedData implements CommandLineRunner
                 true,
                 2,
                 2,
+                200.00,
+                945,
                 u3));
         userService.save(u3);
 
@@ -134,6 +142,8 @@ public class SeedData implements CommandLineRunner
                 true,
                 6,
                 6,
+                400.00,
+                1000,
                 u4));
         u4.getListings()
             .add(new Listing(
@@ -145,6 +155,8 @@ public class SeedData implements CommandLineRunner
                 true,
                 4,
                 5,
+                340.00,
+                736,
                 u4));
 
         userService.save(u4);

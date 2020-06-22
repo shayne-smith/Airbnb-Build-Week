@@ -7,9 +7,13 @@ import java.util.List;
 public class ErrorDetail
 {
     private String title;
+
     private int status;
+
     private String detail;
+
     private Date timestamp;
+
     private String developerMessage;
 
     private List<ValidationError> errors = new ArrayList<>();

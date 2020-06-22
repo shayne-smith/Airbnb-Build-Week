@@ -27,13 +27,13 @@ public class Swagger2Config
     public Docket api()
     {
         return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors
-                              .basePackage("com.lambdaschool.usermodel"))
-                .paths(PathSelectors.regex("/.*"))
-                .build()
-                .useDefaultResponseMessages(false) // Allows only my exception responses
-                .apiInfo(apiEndPointsInfo());
+            .select()
+            .apis(RequestHandlerSelectors
+                .basePackage("com.lambdaschool.airbnbbuildweek"))
+            .paths(PathSelectors.regex("/.*"))
+            .build()
+            .useDefaultResponseMessages(false) // Allows only my exception responses
+            .apiInfo(apiEndPointsInfo());
     }
 
     /**
@@ -43,14 +43,14 @@ public class Swagger2Config
      */
     private ApiInfo apiEndPointsInfo()
     {
-        return new ApiInfoBuilder().title("User Model Example")
-                .description("User Model Example")
-                .contact(new Contact("John Mitchell",
-                                     "http://www.lambdaschool.com",
-                                     "john@lambdaschool.com"))
-                .license("MIT")
-                .licenseUrl("https://github.com/LambdaSchool/java-usermodel/blob/master/LICENSE")
-                .version("1.0.0")
-                .build();
+        return new ApiInfoBuilder().title("AirBnB Optimal Price Calculator")
+            .description("An optimal price calculator to help AirBnB hosts determine the best price for their new property listing")
+            .contact(new Contact("Shayne Smith",
+                "https://www.shaynesmith.io",
+                "shayne.m.smith@vanderbilt.edu"))
+            .license("MIT")
+            .licenseUrl("https://github.com/shayne-smith/Airbnb-Build-Week/blob/master/LICENSE")
+            .version("1.0.0")
+            .build();
     }
 }

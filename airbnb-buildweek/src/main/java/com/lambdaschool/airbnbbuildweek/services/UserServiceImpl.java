@@ -130,6 +130,8 @@ public class UserServiceImpl
                     l.isPetsallowed(),
                     l.getNumrooms(),
                     l.getNumbeds(),
+                    l.getOptimalPrice(),
+                    l.getSize(),
                     newUser));
         }
 
@@ -200,6 +202,8 @@ public class UserServiceImpl
                             l.isPetsallowed(),
                             l.getNumrooms(),
                             l.getNumbeds(),
+                            l.getOptimalPrice(),
+                            l.getSize(),
                             currentUser));
                 }
             }

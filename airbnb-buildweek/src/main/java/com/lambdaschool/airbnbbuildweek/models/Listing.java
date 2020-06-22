@@ -35,6 +35,10 @@ public class Listing extends Auditable
 
     private int numbeds;
 
+    private double optimalPrice;
+
+    private int size;
+
     @ManyToOne
     @NotNull
     @JoinColumn(name = "userid",
@@ -56,6 +60,8 @@ public class Listing extends Auditable
         boolean petsallowed,
         int numrooms,
         int numbeds,
+        double optimalPrice,
+        int size,
         @NotNull User user)
     {
         this.listingname = listingname;
@@ -66,6 +72,8 @@ public class Listing extends Auditable
         this.petsallowed = petsallowed;
         this.numrooms = numrooms;
         this.numbeds = numbeds;
+        this.optimalPrice = optimalPrice;
+        this.size = size;
         this.user = user;
     }
 
@@ -159,6 +167,26 @@ public class Listing extends Auditable
         this.numbeds = numbeds;
     }
 
+    public double getOptimalPrice()
+    {
+        return optimalPrice;
+    }
+
+    public void setOptimalPrice(double optimalPrice)
+    {
+        this.optimalPrice = optimalPrice;
+    }
+
+    public int getSize()
+    {
+        return size;
+    }
+
+    public void setSize(int size)
+    {
+        this.size = size;
+    }
+
     public User getUser()
     {
         return user;
@@ -182,11 +210,9 @@ public class Listing extends Auditable
             ", petsallowed=" + petsallowed +
             ", numrooms=" + numrooms +
             ", numbeds=" + numbeds +
+            ", optimalPrice=" + optimalPrice +
+            ", size=" + size +
             ", user=" + user +
-            ", createdBy='" + createdBy + '\'' +
-            ", createdDate=" + createdDate +
-            ", lastModifiedBy='" + lastModifiedBy + '\'' +
-            ", lastModifiedDate=" + lastModifiedDate +
             '}';
     }
 }

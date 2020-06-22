@@ -20,6 +20,7 @@ public class DataSourceConfig
 
     @Autowired
     private ApplicationContext appContext;
+
     @Autowired
     private Environment env;
 
@@ -51,7 +52,7 @@ public class DataSourceConfig
             if (stop)
             {
                 int exitCode = SpringApplication.exit(appContext,
-                                                      (ExitCodeGenerator) () -> 1);
+                    (ExitCodeGenerator) () -> 1);
                 System.exit(exitCode);
             }
 
@@ -69,19 +70,19 @@ public class DataSourceConfig
         }
 
         return DataSourceBuilder.create()
-                .username(myDBUser)
-                .password(myDBPassword)
-                .url(myUrlString)
-                .driverClassName(myDriverClass)
-                .build();
+            .username(myDBUser)
+            .password(myDBPassword)
+            .url(myUrlString)
+            .driverClassName(myDriverClass)
+            .build();
     }
 
     @Bean(name = "jdbcCustom")
 
     @Autowired
     public JdbcTemplate jdbcTemplate(
-            @Qualifier("dsCustom")
-                    DataSource dsCustom)
+        @Qualifier("dsCustom")
+            DataSource dsCustom)
     {
         return new JdbcTemplate(dsCustom);
     }
