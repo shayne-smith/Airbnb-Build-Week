@@ -5,4 +5,4 @@ Airbnb Build Week
 
 API documentation: http://localhost:2019/swagger-ui.html
 
-BASE URL: https://post-here-heroku.herokuapp.com
+BASE URL: 
